@@ -8,11 +8,12 @@ const verifyUser = async (req, res, next) => {
   }
   const token = idToken.split(" ")[1];
   try {
-    const decodedToken = await admin.auth().verifyIdToken(token);
+    const decodedToken = await admin.admin.auth().verifyIdToken(token);
     req.user = decodedToken;
     next();
   } catch (error) {
-    return res.status(401).send({ message: "Unauthorized: Invalid token" });
+    console.log('Errot from JWR',error);
+    return res.status(401).send({ message: "Unauthorized: Invalid token" ,});
   }
   }
   catch{
